@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>柱状图的实现</title>
+</head>
+
+<body>
+    <script src="lib/echarts.min.js"></script>
+    <div style="width: 800px;height: 600px; margin: 0 auto;"></div>
+    <script>
+        var mCharts = echarts.init(document.querySelector('div'));
+        //实现八人成绩的柱状图
+        var option = {
+			dataZoom:[
+				{
+					type:'slider',//类型：滑块
+					//type:'inside'//依靠鼠标滚轮来实现目标区域的缩放
+					xAxisIndex:0//x轴的缩放
+				},
+				{
+					type:'slider',
+					yAxisIndex:0,
+					start:0,
+					end:50
+				}
+			],
+			grid:{//网格
+				show:true,
+				borderWidth:10,//边框宽度
+				borderColor:'pink',//边框的颜色
+				left:120,
+				top:120,//边框向右下角移动
+				width:600,
+				height:150,//控制柱状图的大小
+			},
+            title: {
+                text: '语文成绩表'
+            },
+            tooltip: {
+                trigger: 'item',//鼠标划过图表，显示当前图表的信息---鼠标移入内部
+                // trigger: 'axis',//鼠标划过图表，出现一条竖线来显示---鼠标移至轴上
+                // triggerOn: 'click',
+                // triggerOn: 'mouseover',//默认就是鼠标移过来
+                formatter: function (arg) {
+                    return arg.name + '的分数是' + arg.data | arg.value//也可以使用回调函数的形式来实现
+
+                }
+                // formatter: '{b} : {c}'//用字符串模板 
+                //折线（区域）图、柱状（条形）图、K线图 : {a}（系列名称），{b}（类目值），{c}（数值）, {d}（无）
+
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {},//导出图片，右上角有个下载按钮
+                    dataView: {},//数据视图
+                    restore: {},//重置
+                    dataZoom: {},//区域缩放
+                    magicType: {//动态图表类型的切换
+                        type: ['line', 'bar']
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',//类目轴，要配置data来设置类目数据
+                data: ['张三', '李四', '王五', '闰土', '小明', '茅台', '二牛', '大强'],
+				position:'top',//显示的位置，有top和bottom上下两种
+
+            },
+            yAxis: {
+
+                type: 'value',//原本这里是下面的代码
+                //如果想要成为横柱状图，就需要将图形的xy轴互换
+				position:'right'//显示位置
+            },
+            legend: {
+                data: ['语文', '数学']//要与series中的name值相匹配
+            },
+            series: [
+                {
+                    name: '语文',
+                    type: 'bar',
+                    markPoint: {
+                        //最大值和最小值
+                        data: [
+                            {
+                                type: 'max', name: '最大值'
+                            },
+                            {
+                                type: 'min', name: '最小值'
+                            }
+                        ]
+                    },
+                    markLine: {
+                        //平均值
+                        data: [
+                            {
+                                type: 'average', name: '平均值'
+                            }
+                        ]
+                    },
+                    label: {
+                        show: true,//数值的显示
+                        rotate: 0,//旋转的度数
+                        position: '',//数值显示的位置 上中下
+                    },
+                    // barWidth: '50%',//柱体的宽度
+                    data: [85, 56, 98, 14, 87, 89, 90, 78]
+                },
+                {
+                    name: '数学',
+                    type: 'bar',
+                    // barWidth: '50%',//柱体的宽度
+                    data: [58, 69, 87, 86, 54, 75, 63, 66]
+                }
+            ]
+
+        }
+        mCharts.setOption(option)
+    </script>
+</body>
+
+</html>

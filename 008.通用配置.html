@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 所有图通用的配置
+    
+    
+        1.标题 title
+            ①文字样式：textStyle
+                title:{//标题
+                    text:'成绩展示'//标题文本
+                    textStyle:{//标题样式
+                        color:'red'//标题颜色
+                    }
+                },
+            ②标题边框:border
+                boderWidth:5//标题边框的宽度,
+                boderColor:'blue'//标题边框的颜色,
+                boderRadius:5//标题边框的圆角
+            ③标题的位置
+                top:50,
+                left:10,
+                right:20,
+                bottom:10
+        2.提示 toopltip：提示框组件，用于配置鼠标点击或者划过图表时的显示框
+            ①触发类型：trigger
+                tooltip:{
+                    trigger:'item',//鼠标划过图表时显示该图形的数值，类型等---鼠标移至内部
+                    trigger:'axis'//鼠标划过图表，出现一条竖线来显示---鼠标移至轴上
+                }
+            ②触发时机：triggerOn
+                tooltip:{
+                    triggerOn:'mouseover'
+                    triggerOn:'click'
+                }
+            ③格式化：formatter
+                formatter:'xx'//当修改了这项 每次点击或者移过之后 显示的都是xx,或者使用字符串模板或者回调函数
+        3.工具按钮 toolbox
+             feature: {
+                    saveAsImage: {},//导出图片，右上角有个下载按钮
+                    dataView: {},//数据视图
+                    restore: {},//重置
+                    dataZoom: {},//区域缩放
+                    magicType: {//动态图表类型的切换
+                        type: ['line', 'bar']
+                    }
+                }
+        4.图例 legend
+                lengend：图例，用于筛选系列，需要配合series使用
+                lengend:{
+                    data:['name','name']//lengend中 的data的值需要和series数组中的某组数据的name值一致
+                }
+                -->
+</body>
+
+</html>
